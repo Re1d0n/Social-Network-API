@@ -1,7 +1,16 @@
 const { Thought, User } = require('../models');
 
 const thoughtController = {
-  // add thought to user
+  //get all thoughts
+
+
+  //get single thought
+
+
+  //update thought
+
+
+  // creating thought
   addThought({ params, body }, res) {
     console.log(params);
     Thought.create(body)
