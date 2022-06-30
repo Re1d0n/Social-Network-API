@@ -2,10 +2,25 @@ const { Thought, User } = require('../models');
 
 const thoughtController = {
   //get all thoughts
-
+getThought({params, body }, res) {
+  Thought.find()
+  .then((_data) =>{
+    res.json(_data)
+  }) .catch(err => res.json(err));
+},
 
   //get single thought
-
+getOneThought({params, body}, res) {
+  Thought.findOne({_id: params.id})
+  .then((_data) =>{ 
+    if (!_data) {
+      res.status(404).json({ message: 'No thought found with this id!' });
+      return;
+    }
+    res.json(_data)
+  }) .catch(err => res.json(err));
+  
+},
 
   //update thought
 
