@@ -23,7 +23,19 @@ getOneThought({params, body}, res) {
 },
 
   //update thought
+updateThought({params, body}, res) {
+  Thought.findOneAndUpdate({ _id: params.thoughtId },{$set: body}, { new: true })
+  .then(dbThoughtData => {
+    console.log(dbThoughtData);
+    if (!dbThoughtData) {
+      res.status(404).json({ message: 'No thought can be found!' });
+      return;
+    }
+    res.json(dbThoughtData);
+  })
+  .catch(err => res.json(err));
 
+},
 
   // creating thought
   addThought({ params, body }, res) {
